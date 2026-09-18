@@ -1,0 +1,20 @@
+# Reusable page/capability QA manifest entry.
+# One directory per page or route: .opencode/scripts/qa/pages/<page-or-route>/
+# containing manifest.yaml + smoke.sh (and optional full.sh).
+# The planner updates entries when routes/components/APIs change; the
+# validator runs entries and never regenerates them.
+# Rename this directory from `_example-page` to the real route when used.
+
+id: page-example-read-only-v1
+route_or_capability: /example
+script: .opencode/scripts/qa/pages/_example-page/smoke.sh
+owner: <team-or-owner>
+revision: 1
+prerequisites: frontend optional; authenticated local fixture for rendered detail
+fixtures: mocked API client or captured local fixture; no live external calls
+safety_class: mock-only          # read-only | mock-only | dry-run
+modes: [smoke, full]
+criteria_or_regressions: [rendering, key column/field mapping, escaped values]
+selector_or_api_dependencies: [ExamplePage, exampleAPI]
+timeout_seconds: 30
+last_updated: YYYY-MM-DD

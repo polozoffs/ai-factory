@@ -1,0 +1,41 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "factory",
+  "instructions": [
+    "../AGENTS.md",
+    "rules/workflow.md"
+  ],
+  "references": {
+    "development-docs": {
+      "path": "../docs/development",
+      "description": "Project context, coding standards, API reference, and digest. Read before implementing or validating any change."
+    },
+    "feature-docs": {
+      "path": "../docs/Features",
+      "description": "Current per-feature behavior and operational guidance."
+    },
+    "specs": {
+      "path": "specs",
+       "description": "AI-factory briefs and active/archived specifications produced by feature-planner."
+    },
+    "plans": {
+      "path": "plans",
+       "description": "Technical plans with ordered work chunks and embedded design, produced by feature-planner."
+    },
+    "qa": {
+      "path": "qa",
+       "description": "QA test plans produced by feature-planner, executed by validator."
+    }
+  }
+  // INIT: optional — enable MCP servers the validator/planner may use.
+  // Keep only what the project needs; each enabled server is loaded into
+  // agent sessions and costs context.
+  // ,
+  // "mcp": {
+  //   "playwright": {
+  //     "type": "local",
+  //     "command": ["npx", "-y", "@playwright/mcp@latest"],
+  //     "enabled": true
+  //   }
+  // }
+}
