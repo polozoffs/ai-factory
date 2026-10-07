@@ -55,4 +55,5 @@
 - **`docs/archive/`** — historical, unmaintained; do not read as truth
 - **`.opencode/specs|plans|qa/`** — AI-factory artifacts (see
   `.opencode/rules/workflow.md`)
+- **`.opencode/skills/`** — reusable agent skills loaded on demand
 - **`.opencode/scripts/legacy/`** — superseded scripts, reference only

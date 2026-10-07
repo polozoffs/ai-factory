@@ -198,4 +198,6 @@ not silently rewrite them. New runs use `feature-planner`.
 - `/implement <spec-file> <chunk-id>` — implementer only; a chunk id is required
   unless a `CORRECTION` envelope is supplied
 - `/validate [spec-file]` — validator only
+- `/usage [slug-or-plan-path]` — read-only usage report; records nothing and
+  never changes lifecycle state
 - `/feature <request>` — complete flow

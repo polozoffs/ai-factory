@@ -1,7 +1,8 @@
 ---
 description: Resumable planner that produces the planning package; never edits application code.
 mode: subagent
-model: opencode/mimo-v2.5-free
+# INIT: pick the model your provider offers; delete the line to use the default.
+# model: <provider>/<model>
 temperature: 0.2
 permission:
   edit:

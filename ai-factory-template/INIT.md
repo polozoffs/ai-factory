@@ -57,7 +57,10 @@ Fill these by exploring the repo, in this order:
 - [ ] **`docs/development/DIGEST.md`** — the condensed ≤150-line summary of
       the three files above. **This is the file agents read first and usually
       only.** §1 what it is, §2 stack, §3 layout, §4 auth, §5 DB, §6 naming,
-      §7 "add a new X" recipes, §8 domain notes, §9 pointers.
+      §7 "add a new X" recipes, §8 domain notes, §9 AI-factory workflow
+      contract (keep as shipped — agents cite it for lifecycle/usage
+      behavior), §10 pointers. Keep the `##` numbering stable: chunk
+      `Context:` lines cite `STANDARDS §<n>` / `CONTEXT §<n>` by number.
 - [ ] **`docs/Features/`** — create one doc per existing feature domain using
       `TEMPLATE.md` there. These let the planner ground briefs in current
       behavior instead of re-discovering it.
@@ -83,6 +86,11 @@ Fill these by exploring the repo, in this order:
       recorder reads and rewrites.
 - [ ] **`.opencode/specs/TEMPLATE.md`** — adjust the Section-4 area rows to
       the project's layers.
+- [ ] **Mock-first seams must be real.** Every place above that names an
+      external system must name its mock seam too. Agents are forbidden from
+      making live mutating calls to those systems through tests, scripts, MCP
+      servers, or browser automation — if this repo has no mock seam yet,
+      create one before the first feature run.
 
 ## Phase 4 — Cleanup & first run
 
@@ -91,7 +99,15 @@ Fill these by exploring the repo, in this order:
       meaningless (e.g. `API_REFERENCE.md` for a CLI tool).
 - [ ] Delete the `.opencode/scripts/qa/pages/_example-page/` directory once
       the first real page manifest exists — or keep it as a reference.
-- [ ] Add project skills to `.opencode/skills/` if useful.
+- [ ] **`.opencode/skills/`** ships two reusable skills: `frontend-design`
+      (UI direction) and `python-code-style` (Python conventions). Keep the
+      ones that match this stack, delete the rest, and add project skills
+      alongside them.
+- [ ] **Contract self-check**: run
+      `python3 .opencode/scripts/check_lifecycle_contract.py` (offline,
+      read-only). It must print `PASS` before and after you edit any agent,
+      command, or `rules/workflow.md`; it is the fastest way to catch a
+      lifecycle/gate/safety rule you removed by accident.
 - [ ] **Usage reporting** works out of the box and needs no per-project
       configuration. Verify it with
       `python3 .opencode/scripts/test_usage_recorder.py` (offline, no external
@@ -113,6 +129,7 @@ Fill these by exploring the repo, in this order:
 
 - [ ] No `INIT:` markers or `<PROJECT-NAME>` placeholders remain
       (`grep -r "INIT:" .opencode docs AGENTS.md` returns nothing).
+- [ ] `python3 .opencode/scripts/check_lifecycle_contract.py` prints `PASS`.
 - [ ] `/plan` on a trivial request produces a grounded plan that cites real
       files from this repo.
 - [ ] `/validate` executes real project commands instead of asking.

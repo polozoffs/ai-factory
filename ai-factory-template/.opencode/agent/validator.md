@@ -2,7 +2,8 @@
 description: Execution-first, read-only feature validator. Runs feasible checks and
 returns the sole PASS/FAIL verdict.
 mode: subagent
-model: opencode/big-pickle
+# INIT: pick the model your provider offers; delete the line to use the default.
+# model: <provider>/<model>
 temperature: 0
 permission:
   edit: deny
@@ -11,17 +12,12 @@ permission:
     "git log*": allow
     "git status*": allow
     "curl*": allow
-    "ruff*": allow
-    "cd backend && ruff*": allow
-    "python -m py_compile*": allow
-    "python3 -m py_compile*": allow
-    "python -m pytest*": allow
-    "python3 -m pytest*": allow
-    "npm run build*": allow
-    "npm test*": allow
-    "CI=true npm test*": allow
-    "npm run lint*": allow
-    "npx jest*": allow
+    # INIT: allow only the read-only build/lint/test commands of THIS project.
+    # Examples for common stacks (keep only what applies):
+    #   Python:   "ruff*": allow, "python -m py_compile*": allow, "python -m pytest*": allow
+    #   Node:     "npm run build*": allow, "npm test*": allow, "npm run lint*": allow, "npx jest*": allow
+    #   Go:       "go build*": allow, "go vet*": allow, "go test*": allow
+    #   Java:     "./mvnw -q compile*": allow, "./gradlew build*": allow
     "*": ask
 ---
 

@@ -2,7 +2,8 @@
 description: After final PASS and user approval, updates living docs, commits, and
 archives planning artifacts. Never pushes or edits application code.
 mode: subagent
-model: opencode/muse-spark-1.2-contributor-free
+# INIT: pick the model your provider offers; delete the line to use the default.
+# model: <provider>/<model>
 temperature: 0.1
 permission:
   edit:

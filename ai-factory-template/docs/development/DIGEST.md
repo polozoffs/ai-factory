@@ -99,9 +99,26 @@ Routes are registered in `...`; frontend routes in `...`.
 
 <!-- INIT: short sections for the project's distinctive domains — anything an
      agent would otherwise have to reverse-engineer. One short paragraph each.
-     Add §9, §10 as needed, keeping the whole digest under ~150 lines. -->
+     Add further sections as needed, keeping the whole digest under ~150
+     lines and the "When you need more detail" section last. -->
 
-## 9. When you need more detail
+## 9. AI-factory workflow contract
+
+<!-- INIT: keep this section as shipped; it describes the factory itself, not
+     this project. -->
+
+The AI factory uses an explicit resumable lifecycle in
+`.opencode/rules/workflow.md`. Runs keep a stable `session_id` and increment
+`iteration` for corrections; pending implementation approval does not restart
+planning. Validator FAILs and user-requested fixes return through the
+same-session correction path, with a finite retry limit and an `ESCALATED`
+stop. A validator PASS only reaches `AWAITING_FINAL_SIGNOFF`; release-manager
+requires matching PASS evidence and explicit feature-done approval for the same
+session and iteration. Each applicable stage also records an allow-listed usage
+envelope in plan §8; unknown telemetry stays null and is reported as
+unavailable, never as zero, and never gates a transition.
+
+## 10. When you need more detail
 
 - Full architecture, service list, tables, and startup sequence →
   `docs/development/PROJECT_CONTEXT.md`

@@ -37,8 +37,8 @@ ai-factory-template/
     ├── command/               # /plan /implement /validate /feature /usage
     ├── rules/                 # workflow.md (contracts, token economy, gates)
     ├── specs/ plans/ qa/      # TEMPLATE.md + active/ + archive/ artifact flow
-    ├── scripts/               # usage_recorder.py + tests, page-QA assets, shareable utils, legacy
-    └── skills/                # drop project-specific skills here
+    ├── scripts/               # usage_recorder.py + tests, check_lifecycle_contract.py, page-QA assets, shareable utils, legacy
+    └── skills/                # reusable skills (frontend-design, python-code-style) + your own
 ```
 
 ## Usage (once initialized)
@@ -76,6 +76,29 @@ pre-seeded in `.opencode/plans/TEMPLATE.md`.
   a transition, a verdict, or a release. Recording is best-effort.
 - No prompts, responses, raw provider payloads, or secrets are ever persisted.
 - Recorder tests: `python3 .opencode/scripts/test_usage_recorder.py`.
+
+## Contract self-check
+
+`python3 .opencode/scripts/check_lifecycle_contract.py` statically asserts that
+the shipped contracts still declare every lifecycle state, checkpoint field,
+state transition, correction-envelope rule, session/iteration propagation, the
+finite retry limit and `ESCALATED` stop, the PASS → `AWAITING_FINAL_SIGNOFF`
+closure gate, the release gate, the positional command forms, and the
+no-external-mutation safety rule. It reads markdown only — no network, no
+writes, no git — so it is safe to run at any time, and especially after you
+edit an agent, command, or `rules/workflow.md`.
+
+## Reusable skills
+
+`.opencode/skills/` ships two project-agnostic skills that agents may load on
+demand:
+
+- `frontend-design` — intentional visual-design direction for new or reshaped
+  UI (see its `LICENSE.txt`).
+- `python-code-style` — Python style, linting, naming, and docstring standards.
+
+Both are optional: delete the ones your stack does not need, and add
+project-specific skills alongside them.
 
 ## Applying to a new project
 

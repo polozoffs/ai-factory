@@ -3,8 +3,8 @@
 
 Implements the "Usage reporting contract" and "Usage checkpoint schema" in
 `.opencode/rules/workflow.md`. Standard library only. Reads and writes only
-`.opencode/` markdown checkpoints on disk: no network, provider, Jenkins,
-Bitbucket, JIRA, PACT, database, or git calls.
+`.opencode/` markdown checkpoints on disk: no network, provider, external
+system, database, or git calls.
 
 Usage:
   python3 .opencode/scripts/usage_recorder.py report --plan <plan.md>

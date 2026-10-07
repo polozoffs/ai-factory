@@ -1,7 +1,8 @@
 ---
 description: Implements approved plan chunks; hands off validation and never commits.
 mode: subagent
-model: opencode/nemotron-3-ultra-free
+# INIT: pick the model your provider offers; delete the line to use the default.
+# model: <provider>/<model>
 temperature: 0.1
 permission:
   edit: allow
